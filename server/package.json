@@ -1,5 +1,5 @@
 {
-  "name": "catane_scores_server",
+  "name": "guinee-educ",
   "version": "0.0.1",
   "description": "",
   "main": "src/index.ts",
@@ -8,16 +8,8 @@
     "build": "tsc",
     "start:prod": "node build/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GrischK/catane_scores.git"
-  },
-  "author": "Grischka Gorski",
+  "author": "Thore Simon",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GrischK/catane_scores/issues"
-  },
-  "homepage": "https://github.com/GrischK/catane_scores#readme",
   "dependencies": {
     "apollo-server-core": "^3.10.3",
     "apollo-server-errors": "^3.3.1",
