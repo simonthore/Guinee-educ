@@ -1,0 +1,24 @@
+.global{
+
+    margin: auto;
+    padding: 2rem;
+    display: contents;
+}
+.carousel .slide .legend{
+    color: white;
+    font-size: 0.8rem;
+    opacity: 1;
+}
+.total{
+   height: 200px;
+}
+.toto{
+    width: 300px;
+    height: 600px;
+    margin: auto;
+
+}
+.toto img {
+    height: 100px;
+    width: 100px;
+}

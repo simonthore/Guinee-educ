@@ -1,0 +1,41 @@
+.big {
+ 
+    background-color: #1a1a1a; /* Couleur de fond plus foncée */
+    color: white;
+  /* Utilisation de space-between pour une meilleure répartition */
+    /* Ajout d'un espace intérieur pour un meilleur espacement des éléments */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Ombre légère pour la profondeur */
+  }
+  
+  .big h1 {
+    font-size: 1.5rem; /* Taille de police légèrement plus grande pour le titre */
+  }
+   .big p:hover{
+    cursor: pointer;
+    color: lightblue; 
+    
+  }
+  .links{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; 
+    /* padding: 1rem; */
+    margin: 0 10rem; 
+  }
+  
+  button {
+    background-color: lightblue; /* Couleur de fond orange pour le bouton */
+    color: white;
+    padding: 0.5rem 1rem; /* Espacement interne pour le bouton */
+    border: none;
+    border-radius: 5px; /* Coins arrondis pour le bouton */
+    cursor: pointer;
+    font-size: 1rem; /* Taille de police légèrement plus grande pour le bouton */
+    font-weight: bold; /* Texte en gras pour attirer l'attention */
+    transition: background-color 0.3s ease; /* Transition fluide de la couleur de fond */
+  }
+  
+  button:hover {
+    background-color: lightgreen; /* Changement de couleur au survol */
+  }
+  
