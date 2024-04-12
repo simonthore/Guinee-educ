@@ -24,7 +24,7 @@
     margin: 0 10rem;
   }
   
-  button {
+  .big button {
     background-color: lightblue; /* Couleur de fond orange pour le bouton */
     color: white;
     padding: 0.5rem 1rem; /* Espacement interne pour le bouton */
@@ -36,7 +36,7 @@
     transition: background-color 0.3s ease; /* Transition fluide de la couleur de fond */
   }
   
-  button:hover {
+  .big button:hover {
     background-color: lightgreen; /* Changement de couleur au survol */
   }
   a{

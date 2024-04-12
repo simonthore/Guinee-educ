@@ -1,4 +1,7 @@
 @import "./components/Navbar.css";
 @import "./screens/Home.css";
-@import "./screens/contact.css"
+@import "./screens/Contact.css";
+@import "./screens/Login.css";
+@import "./screens/Donation.css";
+@import "./components/ColumnCard.css";
 /* @import "./components/Slider.css"; */

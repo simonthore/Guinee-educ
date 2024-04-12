@@ -1,0 +1,34 @@
+.buttons-container {
+    margin-bottom: 20px;
+  }
+  .donation-page{
+    display: flex;
+  }
+  .active-button {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 1px solid red;
+    cursor: pointer;
+    font-size: larger;
+  }
+  
+  .inactive-button {
+    background-color: lightgrey;
+    color: black;
+    border-radius: 5px;
+    border: 1px solid red;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: larger;
+  }
+  
+  .monthly-donation-section, .one-time-donation-section {
+    display: none;
+  }
+  
+  .monthly-donation-section.show, .one-time-donation-section.show {
+    display: block;
+  }
+  
