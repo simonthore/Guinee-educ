@@ -2,7 +2,9 @@ import React from 'react';
 import {useUsersQuery} from "./gql/generated/schema";
 import { Route, Routes, useSearchParams, useLocation } from "react-router-dom";
 import Home from "./screens/Home";
+import Contact from './screens/Contact';
 import NavBar from "./components/Navbar";
+import Login from './screens/Login';
 import "./App.css";
 function App() {
     const { data, error } = useUsersQuery();
@@ -15,7 +17,9 @@ function App() {
         <>
         <NavBar children={undefined} customClass={undefined}/>
         <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
+            <Route path ="/" element={<Home />} />
+            <Route path ="contact" element={<Contact />} />
+            <Route path ="login" element={<Login />} />
         </Routes>
         </>
     );

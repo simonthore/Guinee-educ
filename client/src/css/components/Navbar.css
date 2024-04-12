@@ -1,11 +1,13 @@
 .big {
- 
-    background-color: #1a1a1a; /* Couleur de fond plus foncée */
-    color: white;
-  /* Utilisation de space-between pour une meilleure répartition */
-    /* Ajout d'un espace intérieur pour un meilleur espacement des éléments */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Ombre légère pour la profondeur */
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Assurez-vous que la barre de navigation est au-dessus du reste du contenu */
+}
   
   .big h1 {
     font-size: 1.5rem; /* Taille de police légèrement plus grande pour le titre */
@@ -15,12 +17,11 @@
     color: lightblue; 
     
   }
-  .links{
+  .links {
     display: flex;
     align-items: center;
-    justify-content: space-evenly; 
-    /* padding: 1rem; */
-    margin: 0 10rem; 
+    justify-content: space-evenly;
+    margin: 0 10rem;
   }
   
   button {
@@ -37,5 +38,18 @@
   
   button:hover {
     background-color: lightgreen; /* Changement de couleur au survol */
+  }
+  a{
+    color: white;
+    text-decoration: none;  
+  }
+  a:hover{
+    color: lightblue;
+    transform: scale(1.2);
+  }
+  img{
+    width: 25px;
+    height: 25px;
+    color: white;
   }
   

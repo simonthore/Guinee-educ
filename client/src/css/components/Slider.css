@@ -13,12 +13,12 @@
    height: 200px;
 }
 .toto{
-    width: 300px;
-    height: 600px;
+    max-width: 40%;
+    height: 500px;
     margin: auto;
 
 }
 .toto img {
-    height: 100px;
-    width: 100px;
+    max-height: 300px; /* Définir une hauteur maximale pour les images */
+    width: auto;
 }
