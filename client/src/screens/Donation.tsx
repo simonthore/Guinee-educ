@@ -1,7 +1,14 @@
     import React, { useState, useEffect } from 'react';
     import ColumnCard from '../components/ColumnCard';
     import email from "../assets/email.png"
-    import axios from 'axios'
+    import cb from "../assets/cb.png"
+    import bank from "../assets/banque.png"
+    import ReactFlagsSelect from "react-flags-select";
+    import cb2 from "../assets/cb2.png"
+    import amex from "../assets/amex.png"
+    import masterc from "../assets/masterc.png"
+    import visa from "../assets/visa.png"
+
 
 
     interface MyFormValues {
@@ -13,20 +20,29 @@
 
     function DonationPage() {
       const [monthlyDonation, setMonthlyDonation] = useState(true);
+      const [activePayment, setActivePayment] = useState(true)
       const [selectedPrice, setSelectedPrice] = useState(null);
       const [customPrice, setCustomPrice] = useState(''); 
-      const [flagUrl, setFlagUrl] = useState('')
+      const [selected, setSelected] = useState("");
+
 
       const handleMonthlyDonationChange = () => {
         setMonthlyDonation(true);
         setSelectedPrice(null); 
       };
 
+      const handleBankPayment = () => {
+        setActivePayment(true)
+      }
+
       const handleOneTimeDonationChange = () => {
         setMonthlyDonation(false);
         setSelectedPrice(null); 
       };
 
+      const handleCbPayment = () => {
+        setActivePayment(false)
+      }
       const handlePriceButtonClick = (price) => {
         setSelectedPrice(price);
         setCustomPrice(price);
@@ -49,62 +65,6 @@
       const [ selectedCountry, setSelectedCountry] = useState("")
       const [iban, setIban] = useState("")
       const [bic, setBic] = useState("")
-
-
-      const handleCityChange = (event) => {
-        setCity(event.target.value); // Mettre à jour la ville lorsque l'utilisateur modifie la valeur
-      };
-
-      const handleCountryChange = (event) => {
-        const selectedCountryCode = event.target.value;
-        setSelectedCountry(selectedCountryCode);
-      
-        // Rechercher l'objet pays correspondant dans le tableau countries
-        const selectedCountry = countries.find(country => country.name.common === selectedCountryCode);
-      
-        if (selectedCountry) {
-          // Si le pays est trouvé, récupérer le cca2
-          const cca2 = selectedCountry.cca2;
-          console.log(`Le cca2 du pays sélectionné (${selectedCountryCode}) est : ${cca2}`);
-        } else {
-          console.log("Pays non trouvé dans la liste.");
-        }
-      }
-      const getFlag = () => {
-        if (selectedCountry) {
-          // Rechercher l'objet pays correspondant dans le tableau countries
-          const selectedCountryObj = countries.find(country => country.name.common === selectedCountry);
-          if (selectedCountryObj) {
-            // Si le pays est trouvé, récupérer le cca2
-            const cca2 = selectedCountryObj.cca2;
-            console.log(cca2.toLowerCase());
-            
-            // Appel à l'API pour obtenir l'URL du drapeau
-            axios.get(`https://flagcdn.com/w20/${cca2.toLowerCase()}.png`)
-              .then(response => {
-                console.log(city);
-                setFlagUrl(response.config.url); // Mettre à jour l'URL du drapeau dans l'état
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          } else {
-            console.log("Pays non trouvé dans la liste.");
-          }
-        }
-      };
-
-      useEffect(() => {
-        // Appel à l'API pour obtenir la liste des pays
-        axios.get('https://restcountries.com/v3/all')
-          .then(response => {
-            // Stocker les données des pays dans l'état
-            setCountries(response.data);           
-          })
-          .catch(error => {
-            console.error('Erreur lors de la récupération des pays :', error);
-          });
-      }, []); 
 
 
       return (
@@ -140,7 +100,7 @@
           <ColumnCard title={"MES COORDONNEES"}>
             <div id="column_2">
             <div className='bottom_bar'>
-            <p className='special_span_2'> <img src= {email} alt="email" /></p>
+            <p className='special_span_2'> <img src= {email} alt="email" /></p>   
             <input type="text" placeholder='Email *'/>
             </div>
           <input type="checkbox" /> je fais un don au nom d'une société 
@@ -207,31 +167,29 @@
             name="City"
             placeholder="Ville *"
             value={city}
-            onChange={handleCityChange}
           />
           <div>
             
           <h2>Sélectionnez un pays :</h2>
-          <select value={selectedCountry} onChange={handleCountryChange}>
-        <option value="">Sélectionnez un pays</option>
-        {countries.map(country => (
-       <option key={country.name.common} value={country.name.common} style={{ backgroundImage: `url(https://flagcdn.com/w20/${country.cca2.toLowerCase()}.png)` }}>
-            
-            {country.name.common}
-
-          </option>
-        ))}
-      </select>
-          <button onClick={getFlag}>Obtenir le drapeau</button>
-      {/* Affichage du drapeau */}
-      {flagUrl && <img src={flagUrl} alt="Drapeau" />}  
+          <ReactFlagsSelect
+          id='country_input'
+          selected={selected}
+          onSelect={(code) => setSelected(code)}
+          />
          
 
         </div>
             </div>
           </ColumnCard>
           <ColumnCard title={"MON REGLEMENT SECURISE"}>
-            <div id="column_3"></div>
+            <div id="column_3">
+            <div id='top_button'>
+            {/* <button className={activePayment ? 'active-button' : 'inactive-button'} id="bank" onClick={handleActivePayment}>Je donne tous les mois</button>
+            <button className={!activePayment ? 'active-button' : 'inactive-button'} id="cb" onClick={handleActivePayment}>Je fais un don ponctuel</button> */}
+            <button className={activePayment ? 'active-button' : 'inactive-button'} onClick={handleBankPayment}> <img src= {bank} alt="banque" /></button>
+            <button className={!activePayment ? 'active-button' : 'inactive-button'}  onClick={handleCbPayment}> <img src= {cb} alt="cb" /></button>
+            </div>
+            <div className={activePayment ? 'bank show' : 'bank-section'}>
             <input
             type="text"
             id="iban"
@@ -249,6 +207,36 @@
             onChange={(e)=>setBic(e.target.value)}
           />
           <button>je donne tous les mois {customPrice} €</button>
+          </div>
+          <div className={!activePayment ? 'cb show' : 'cb-section'}>
+            <div className='card-area'>
+              <div id='mastercard-area' className='card-checkbox'>
+                <img src= {masterc} alt="master card" />
+                <label>
+                <input type="checkbox" onChange={() => {}} />
+                </label>  
+              </div>
+              <div id='visa-area' className='card-checkbox'>
+                <img src= {visa} alt="visa" />
+                <label>
+                <input type="checkbox" onChange={() => {}} />
+                </label>  
+              </div>
+              <div id='creditcard-area' className='card-checkbox'>
+                <img src= {cb2} alt="credit card" />
+                <label>
+                <input type="checkbox" onChange={() => {}} />
+                </label>  
+              </div>
+              <div id='amex-area' className='card-checkbox'>
+                <img src= {amex} alt="amex" />
+                <label>
+                <input type="checkbox" onChange={() => {}} />
+                </label>  
+              </div>
+            </div>
+            </div>
+          </div>
           </ColumnCard>
         </div>
       );
