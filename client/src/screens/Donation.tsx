@@ -2,7 +2,7 @@
     import ColumnCard from '../components/ColumnCard';
     import email from "../assets/email.png"
     import axios from 'axios'
-import { log } from 'console';
+
 
     interface MyFormValues {
       firstname: string;
@@ -15,6 +15,7 @@ import { log } from 'console';
       const [monthlyDonation, setMonthlyDonation] = useState(true);
       const [selectedPrice, setSelectedPrice] = useState(null);
       const [customPrice, setCustomPrice] = useState(''); 
+      const [flagUrl, setFlagUrl] = useState('')
 
       const handleMonthlyDonationChange = () => {
         setMonthlyDonation(true);
@@ -50,32 +51,62 @@ import { log } from 'console';
       const [bic, setBic] = useState("")
 
 
-      useEffect(() => {
-        const fetchCountries = async () => {
-          try {
-            const response = await axios.get('https://restcountries.com/v3.1/all');
-            console.log(response.data)
-            setCountries(response.data);
-          } catch (error) {
-            console.error('Erreur lors de la récupération des pays :', error);
-          }
-        };
-
-        fetchCountries();
-      }, []);
+      const handleCityChange = (event) => {
+        setCity(event.target.value); // Mettre à jour la ville lorsque l'utilisateur modifie la valeur
+      };
 
       const handleCountryChange = (event) => {
         const selectedCountryCode = event.target.value;
         setSelectedCountry(selectedCountryCode);
+      
+        // Rechercher l'objet pays correspondant dans le tableau countries
+        const selectedCountry = countries.find(country => country.name.common === selectedCountryCode);
+      
+        if (selectedCountry) {
+          // Si le pays est trouvé, récupérer le cca2
+          const cca2 = selectedCountry.cca2;
+          console.log(`Le cca2 du pays sélectionné (${selectedCountryCode}) est : ${cca2}`);
+        } else {
+          console.log("Pays non trouvé dans la liste.");
+        }
+      }
+      const getFlag = () => {
+        if (selectedCountry) {
+          // Rechercher l'objet pays correspondant dans le tableau countries
+          const selectedCountryObj = countries.find(country => country.name.common === selectedCountry);
+          if (selectedCountryObj) {
+            // Si le pays est trouvé, récupérer le cca2
+            const cca2 = selectedCountryObj.cca2;
+            console.log(cca2.toLowerCase());
+            
+            // Appel à l'API pour obtenir l'URL du drapeau
+            axios.get(`https://flagcdn.com/w20/${cca2.toLowerCase()}.png`)
+              .then(response => {
+                console.log(city);
+                setFlagUrl(response.config.url); // Mettre à jour l'URL du drapeau dans l'état
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          } else {
+            console.log("Pays non trouvé dans la liste.");
+          }
+        }
       };
 
-      const formatTLD = (tld) => {
-        if (!tld || typeof tld !== 'string') return ''; // Vérifie si tld est défini et une chaîne de caractères
-        return tld.slice(-2).toUpperCase(); // Formate le tld en majuscules
-      };
-      
-      
-      
+      useEffect(() => {
+        // Appel à l'API pour obtenir la liste des pays
+        axios.get('https://restcountries.com/v3/all')
+          .then(response => {
+            // Stocker les données des pays dans l'état
+            setCountries(response.data);           
+          })
+          .catch(error => {
+            console.error('Erreur lors de la récupération des pays :', error);
+          });
+      }, []); 
+
+
       return (
         <div className="donation-page">
           <ColumnCard title={"MON DON"}>
@@ -176,20 +207,26 @@ import { log } from 'console';
             name="City"
             placeholder="Ville *"
             value={city}
-            onChange={(e)=>setCity(e.target.value)}
+            onChange={handleCityChange}
           />
-              <div>
+          <div>
             
           <h2>Sélectionnez un pays :</h2>
-            <select value={selectedCountry} onChange={handleCountryChange} id="country-select">
+          <select value={selectedCountry} onChange={handleCountryChange}>
         <option value="">Sélectionnez un pays</option>
-          {countries.map((country) => (
-        <option key={country.cca2} value={country.cca2}>
-          {country.name.common}
-        </option>
-          ))}
-            </select>
+        {countries.map(country => (
+       <option key={country.name.common} value={country.name.common} style={{ backgroundImage: `url(https://flagcdn.com/w20/${country.cca2.toLowerCase()}.png)` }}>
             
+            {country.name.common}
+
+          </option>
+        ))}
+      </select>
+          <button onClick={getFlag}>Obtenir le drapeau</button>
+      {/* Affichage du drapeau */}
+      {flagUrl && <img src={flagUrl} alt="Drapeau" />}  
+         
+
         </div>
             </div>
           </ColumnCard>
