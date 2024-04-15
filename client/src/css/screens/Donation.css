@@ -1,3 +1,8 @@
+.column{
+  width: 400px;
+  padding: 10px;
+}
+
 .buttons-container {
     margin-bottom: 20px;
   }
@@ -5,6 +10,7 @@
     display: flex;
   }
   .active-button {
+    width: 200px;
     background-color: red;
     color: white;
     border-radius: 5px;
@@ -12,10 +18,34 @@
     border: 1px solid red;
     cursor: pointer;
     font-size: larger;
+    position: relative; /* necessaire pour afficher la petite fleche */
+  }
+
+  #montly-donation{
+    border-top-right-radius: 0px;  
+    border-bottom-right-radius: 0px;  
+  }
+  #ponctual-donation{
+    border-top-left-radius: 0px;  
+    border-bottom-left-radius: 0px;  
+  }
+
+  
+  .active-button::after {
+    content: '';
+    position: absolute;
+    bottom: -25px; /* positionne la flèche verticalement */
+    left: 50%;
+    transform: translateX(-50%);
+    border: solid transparent;
+   border-width: 20px 15px 0;
+  border-bottom-width: 10px; 
+    border-top-color: red; /* Couleur de la flèche */
   }
   
   .inactive-button {
-    background-color: lightgrey;
+    width: 200px;
+    background-color: #C5C3C2;
     color: black;
     border-radius: 5px;
     border: 1px solid red;
@@ -32,3 +62,52 @@
     display: block;
   }
   
+  .price_button{
+    width: 80px;
+    height: 60px;
+    border-radius: 10%;
+    background-color: white;
+    padding: 5x;
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+    font-size: larger;  
+  }
+
+  .price_button.selected {
+    background-color: #ff0000; 
+    color: #ffffff; 
+  }
+  .bottom_bar{
+    display: flex;
+    align-items: center;
+  }
+  .adjusted_price{
+    width: 300px;
+    height: 50px;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    border: none;
+  }
+  .special_span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    border-bottom-right-radius: 10px; 
+    border-top-right-radius: 10px; 
+    background-color: #F1F1F1;
+    width: 50px;
+    height: 52px;
+    border: none;
+  }
+
+  #country-select option[value="FR"] {
+    background-image: url('https://flagcdn.com/w20/fr.png');
+  }
+  
+  #country-select option[value="US"] {
+    background-image: url('https://flagcdn.com/w20/us.png');
+  }

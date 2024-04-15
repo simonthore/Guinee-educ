@@ -12,7 +12,6 @@ function App() {
     const { data, error } = useUsersQuery();
     const location = useLocation();  // Utilisez useLocation pour obtenir la valeur de location
 
-    console.log(data, error)
 
 
     return (
