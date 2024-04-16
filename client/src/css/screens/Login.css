@@ -9,31 +9,16 @@
     width: 60%;
     position: relative;
   }
-  
- 
  
   #intro h1{
     text-align: center;
     margin:50px 0 30px 0;
   }
 
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    box-sizing: border-box;
-    vertical-align: top; 
-    text-align: left;
-    
-  }
-  
-  input[type="text"]:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
   #message_input {
     height: 200px;
+  }
+
+  #password_input{
+    width: 300px;
   }

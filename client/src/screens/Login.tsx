@@ -23,6 +23,7 @@ export default function Login() {
             <input
                 type="text"
                 id="email_input"
+                className='main-input'
                 name="email"
                 placeholder="votre adresse mail"
                 value={email}
@@ -31,6 +32,7 @@ export default function Login() {
             <input
                 type="text"
                 id="password_input"
+                className='main-input'
                 name="password"
                 placeholder="votre mot de passe"
                 value={password}
@@ -44,7 +46,7 @@ export default function Login() {
                 se connecter
             </button>
             <button>
-            <Link to="/">créer un compte </Link>
+            <Link to="/CreateUser">créer un compte </Link>
             </button>
             </div>
         </>

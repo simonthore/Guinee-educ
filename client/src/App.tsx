@@ -6,6 +6,7 @@ import Contact from './screens/Contact';
 import NavBar from "./components/Navbar";
 import Login from './screens/Login';
 import DonationPage from './screens/Donation';
+import CreateUser from './screens/CreateUser';
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path ="Contact" element={<Contact />} />
             <Route path ="Login" element={<Login />} />
             <Route path="Donation" element={<DonationPage/>} />
+            <Route path="CreateUSer" element={<CreateUser />} />
         </Routes>
         </>
     );

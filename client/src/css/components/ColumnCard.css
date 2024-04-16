@@ -1,15 +1,19 @@
 .card {
-    border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
-    
+    margin: 0 20px;
+    margin-bottom: 40px;
 }
 
 .card-header {
-    background-color: black;
+    text-align: center;
+    background-color: #414042;
     padding: 20px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin: 0 20px;
+    margin-top: 40px;
+
 }
 
 .card-header h1 {
@@ -22,4 +26,5 @@
     padding: 20px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    margin: 0 20px;
 }

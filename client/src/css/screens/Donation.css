@@ -1,30 +1,47 @@
+/* Générale */
+
 .column{
   width: 400px;
   padding: 10px;
 }
 
+.donation-page{
+  display: flex;
+}
+
+.subinfo{
+  font-style: italic;
+  font-size: 12px;
+}
+.checkboite{
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin-left: 10px;
+}
+/* 1ère colonne  */
 .buttons-container {
     margin-bottom: 20px;
   }
-  .donation-page{
-    display: flex;
-  }
-  .active-button {
-    width: 200px;
-    background-color: red;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 20px;
-    border: 1px solid red;
-    cursor: pointer;
-    font-size: larger;
-    position: relative; /* necessaire pour afficher la petite fleche */
-  }
+
+.active-button {
+  width: 200px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: 1px solid red;
+  cursor: pointer;
+  font-size: larger;
+  position: relative; /* necessaire pour afficher la petite fleche */
+}
 
   #montly-donation{
     border-top-right-radius: 0px;  
     border-bottom-right-radius: 0px;  
   }
+
+
   #ponctual-donation{
     border-top-left-radius: 0px;  
     border-bottom-left-radius: 0px;  
@@ -83,6 +100,7 @@
     align-items: center;
   }
   .adjusted_price{
+    font-size: 20PX;
     width: 300px;
     height: 50px;
     border-top-left-radius: 10px; 
@@ -104,9 +122,67 @@
     border: none;
   }
 
+  /* deuxieme colonne */
+  .special_span_2{
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom-left-radius: 10px; 
+    border-top-left-radius: 10px; 
+    background-color: #F1F1F1;
+    width: 50px;
+    height: 52px;
+    border: none;
+  }
+
+  #firstname_input{
+    width: 40%;
+  }
+  .email_input{
+    font-size: 20PX;
+    width: 300px;
+    height: 50px;
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border: none;
+  }
+
+  #société{
+    display: flex;
+    align-items: center;
+  }
+  #info-société{
+    margin-left: 10px;
+    font-size: 20px;
+  }
+
+  #civilites{
+    height: 46px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 22px;
+
+    font-size: 16px;
+    width: 40%;
+  }
+
   #country_input{
     background-color: white;
   }
+  #cp_input{
+    width: 36%;
+  }
+  #City{
+    width: 40%;
+  }
+
+  .ReactFlagsSelect-module_flagsSelect__2pfa2 {
+    padding-bottom: 0px;
+}
 
   /* troisième colonne  */
 
@@ -139,27 +215,3 @@
   padding: 5px;
 }
 
-input[type="checkbox"] + span:before {
-  width: 12px;
-  height: 12px;
-  border: 1.5px solid #f0f0f0;
-  content: "";
-  display: inline-block;
-  margin: 0 16px 0 0;
-  padding: 0;
-  vertical-align: top;
-  border-radius: 50%;
-}
-input[type="checkbox"]:checked + span:before {
-  background: #1460c8;
-  border: 1.5px solid #1460c8;
-  box-shadow: inset 0px 0px 0px 1px #fff;
-  color: #333;
-  content: "";
-  text-align: center;
-  border-radius: 50%;
-}
-
-input[type="checkbox"]:focus + span::before {
-  outline: 0;
-}

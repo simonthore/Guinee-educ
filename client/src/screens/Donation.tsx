@@ -43,7 +43,7 @@
       const handleCbPayment = () => {
         setActivePayment(false)
       }
-      const handlePriceButtonClick = (price) => {
+      const handlePriceButtonClick = (price:string) => {
         setSelectedPrice(price);
         setCustomPrice(price);
       };
@@ -97,14 +97,15 @@
               </div>
             </div>
           </ColumnCard>
-          <ColumnCard title={"MES COORDONNEES"}>
+          <ColumnCard title={"MES COORDONNÉES"}>
             <div id="column_2">
             <div className='bottom_bar'>
             <p className='special_span_2'> <img src= {email} alt="email" /></p>   
-            <input type="text" placeholder='Email *'/>
+            <input type="text" placeholder='Email *' className='email_input'/>
             </div>
-          <input type="checkbox" /> je fais un don au nom d'une société 
-          <br />
+            <div id='société'>
+          <input type="checkbox" className='checkboite' /><p id="info-société">je fais un don au nom d'une société</p> 
+          </div>
           <select name="civilité" id="civilites">
             <option value="">Civilité *</option>
             <option value="mr">M.</option>
@@ -112,42 +113,46 @@
             <option value="mrs&mr">Mme et M.</option>
             <option value="other">Autre</option>
           </select>
-
-          <input
-            type="text" 
-            id="lastname_input"
-            name="lastname" 
-            placeholder="nom"
-            value={lastname}  
-            onChange={(e) => setLastname(e.target.value)} 
-          />
           <input
             type="text" 
             id="firstname_input"
+            className='main-input'
             name="firstname" 
-            placeholder="prénom"
+            placeholder="prénom *"
             value={firstname}  
             onChange={(e) => setFirstname(e.target.value)} 
           />
           <input
+            type="text" 
+            id="lastname_input"
+            className='main-input'
+            name="lastname" 
+            placeholder="nom *"
+            value={lastname}  
+            onChange={(e) => setLastname(e.target.value)} 
+          />
+          <input
             type="text"
             id="email_input"
+            className='main-input'
             name="email"
-            placeholder="votre adresse mail"
+            placeholder="votre adresse mail *"
             value={mail}
             onChange={(e)=>setMail(e.target.value)}
           />
           <input
             type="text"
             id="adress_input"
+            className='main-input'
             name="adress"
-            placeholder="Entrez votre adresse"
+            placeholder="Entrez votre adresse..."
             value={adress}
             onChange={(e)=>setAdress(e.target.value)}
           />
           <input
             type="text"
             id="comp_adress_input"
+            className='main-input'
             name="comp_adress"
             placeholder="Complément adresse"
             value={compAdress}
@@ -156,6 +161,7 @@
           <input
             type="number"
             id="cp_input"
+            className='main-input'
             name="postcode"
             placeholder="Code postal *"
             value={postcode}
@@ -164,6 +170,7 @@
           <input
             type="text"
             id="City"
+            className='main-input'
             name="City"
             placeholder="Ville *"
             value={city}
@@ -175,17 +182,18 @@
           id='country_input'
           selected={selected}
           onSelect={(code) => setSelected(code)}
+          placeholder="Sélectionnez un pays"
           />
          
+        <p className='subinfo'>* Champs obligatoires (ces informations sont indispensables pour recevoir votre reçu fiscal) </p>
 
         </div>
             </div>
           </ColumnCard>
-          <ColumnCard title={"MON REGLEMENT SECURISE"}>
-            <div id="column_3">
+          <ColumnCard title={"MON RÈGLEMENT SÉCURISÉ"}>
+            <div id="column_3"> 
             <div id='top_button'>
-            {/* <button className={activePayment ? 'active-button' : 'inactive-button'} id="bank" onClick={handleActivePayment}>Je donne tous les mois</button>
-            <button className={!activePayment ? 'active-button' : 'inactive-button'} id="cb" onClick={handleActivePayment}>Je fais un don ponctuel</button> */}
+           
             <button className={activePayment ? 'active-button' : 'inactive-button'} onClick={handleBankPayment}> <img src= {bank} alt="banque" /></button>
             <button className={!activePayment ? 'active-button' : 'inactive-button'}  onClick={handleCbPayment}> <img src= {cb} alt="cb" /></button>
             </div>
@@ -193,6 +201,7 @@
             <input
             type="text"
             id="iban"
+            className='main-input'
             name="iban"
             placeholder="Votre numéro IBAN *"
             value={iban}
@@ -203,6 +212,8 @@
             id="bic"
             name="bic"
             placeholder="Votre code BIC *"
+            className='main-input'
+
             value={bic}
             onChange={(e)=>setBic(e.target.value)}
           />
